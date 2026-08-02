@@ -5,5 +5,5 @@ export interface PromptToFormOptions<T> {
 export interface PromptToFormResponse<T> {
     data: Partial<T> | null
     error: string | null
-    missingFields: []
+    missingFields: (keyof T)[]
 }

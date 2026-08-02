@@ -1,2 +1,2 @@
 export * from "./types";
-export * from "../core/parser/createPromptParser"
+export * from "./parser/createPromptParser"
