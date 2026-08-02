@@ -10,11 +10,10 @@ export function createPromptParser<TSchema, TData>(
         async parse(
             prompt: string,
         ): Promise<PromptToFormResponse<TData>> {
-            console.log("Parsing prompt:", prompt)
-            console.log("Using schema:", options.schema)
+            const data = await options.provider.parse(prompt)
 
             return {
-                data: null,
+                data,
                 missingFields: [],
                 error: null,
             }
