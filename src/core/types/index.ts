@@ -1,5 +1,8 @@
-export interface PromptToFormOptions<T> {
-    schema: T
+import type { PromptProvider } from "../providers/types"
+
+export interface PromptToFormOptions<TSchema, TData> {
+    schema: TSchema
+    provider: PromptProvider<TData>
 }
 
 export interface PromptToFormResponse<T> {

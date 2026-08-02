@@ -4,7 +4,7 @@ import type {
 } from "../types"
 
 export function createPromptParser<TSchema, TData>(
-    options: PromptToFormOptions<TSchema>,
+    options: PromptToFormOptions<TSchema, TData>,
 ) {
     return {
         async parse(
