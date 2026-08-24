@@ -22,20 +22,26 @@ Parsed result:
   "missingFields": [],
   "error": null
 }
+```
+
 If the user enters:
 
-Book a site visit for Sarah
+> Book a site visit for Sarah
 
 the parser can return:
 
+```json
 {
   "data": {
     "customerName": "Sarah",
     "serviceType": "site visit"
   },
-  "missingFields": ["appointmentDate"],
+  "missingFields": [
+    "appointmentDate"
+  ],
   "error": null
 }
+```
 
 ## How it works
 
@@ -69,17 +75,18 @@ Required field check
 Zod validation
   ↓
 Structured response
+```
 
-The provider is behind a common PromptProvider<TData> interface, so the parser is not tied directly to Groq. Other providers can be added without changing the core parsing logic.
+The provider is behind a common `PromptProvider<TData>` interface, so the parser is not tied directly to Groq. Other providers can be added without changing the core parsing logic.
 
 ## Tech stack
 
-- React + TypeScript for the frontend
-- Node.js + Express for the backend API
-- Groq SDK for LLM access
-- Zod for runtime validation
-- Vitest for unit testing
-- GitHub Actions for CI
+* React + TypeScript for the frontend
+* Node.js + Express for the backend API
+* Groq SDK for LLM access
+* Zod for runtime validation
+* Vitest for unit testing
+* GitHub Actions for CI
 
 ## Running locally
 
@@ -87,17 +94,29 @@ Install dependencies:
 
 ```bash
 npm install
+```
 
-Create a .env file in the project root:
+Create a `.env` file in the project root:
+
+```env
 GROQ_API_KEY=your_groq_api_key
+```
+
+The API key is only read by the Node server and is not exposed to the React frontend.
 
 Start the backend:
+
+```bash
 npm run server
+```
 
 Start the React application in another terminal:
-npm run dev
 
-One thing worth understanding here: we now need **two running processes** locally because React and Express are separate applications.
+```bash
+npm run dev
+```
+
+The frontend and backend run as separate processes during local development.
 
 ## Testing
 
@@ -105,22 +124,51 @@ Run the test suite with:
 
 ```bash
 npm test -- --run
+```
 
 The parser tests cover:
 
-partial data with missing required fields
-complete valid data
-invalid data returned by a provider
-Continuous integration
+* partial data with missing required fields
+* complete valid data
+* invalid data returned by a provider
+
+## Continuous integration
 
 GitHub Actions runs automatically for pull requests.
 
 The CI workflow:
 
-Checks out the repository
-Sets up Node.js
-Installs dependencies
-Runs the test suite
-Builds the project
+1. Checks out the repository
+2. Sets up Node.js
+3. Installs dependencies
+4. Runs the test suite
+5. Builds the project
 
 This helps prevent code that fails tests or does not build successfully from being merged.
+
+## Security
+
+The Groq API key is stored in a server-side environment variable.
+
+The React frontend never receives the API key directly. Requests flow through the Express backend, which then communicates with Groq.
+
+The `.env` file is excluded from Git using `.gitignore`.
+
+## Status
+
+The current version includes:
+
+* generic prompt parser
+* provider abstraction
+* mock provider
+* Groq provider
+* required-field detection
+* Zod runtime validation
+* React demo
+* Express backend
+* unit tests
+* GitHub Actions CI
+
+## License
+
+MIT
