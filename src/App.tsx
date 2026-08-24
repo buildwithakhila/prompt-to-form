@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { appointmentParser } from "./demo/createAppointmentDemo"
 import type { Appointment } from "./demo/appointmentSchema"
 
 
@@ -15,7 +14,17 @@ function App() {
     setError(null)
 
     try {
-      const response = await appointmentParser.parse(prompt)
+      const httpResponse = await fetch("http://localhost:3001/api/parse", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt,
+        }),
+      })
+
+      const response = await httpResponse.json()
       setResult(response.data)
       setMissingFields(response.missingFields.map(String))
     } catch (error) {
