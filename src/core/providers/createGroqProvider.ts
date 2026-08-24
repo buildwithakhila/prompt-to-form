@@ -4,6 +4,7 @@ import type { PromptProvider } from "./types"
 interface GroqProviderOptions {
     apiKey: string
     model: string
+    fields: string[]
 }
 
 export function createGroqProvider<TData>(
@@ -19,8 +20,12 @@ export function createGroqProvider<TData>(
                 messages: [
                     {
                         role: "system",
-                        content:
-                            "Extract form data from the user's request. Return only valid JSON.",
+                        content: `Extract form data from the user's request.
+Return only valid JSON.
+Use only these field names: ${options.fields.join(", ")}.
+Do not invent additional fields.
+If a value is not provided, omit that field.
+For date fields, return ISO format YYYY-MM-DD when the date can be resolved.`,
                     },
                     {
                         role: "user",
