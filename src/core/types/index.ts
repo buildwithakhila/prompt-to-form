@@ -4,7 +4,7 @@ export interface SchemaValidator<TData> {
     safeParse(data: unknown):
         | {
             success: true
-            data: Partial<TData>
+            data: TData
         }
         | {
             success: false

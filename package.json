@@ -1,6 +1,23 @@
 {
-  "name": "@buildwithakhila/prompt-to-form",
-  "version": "0.1.0",
+  "name": "@akhila_dev/prompt-to-form",
+  "version": "0.1.1",
+  "description": "Convert natural-language prompts into structured, validated form data using TypeScript and LLM providers.",
+  "keywords": [
+    "llm",
+    "forms",
+    "typescript",
+    "groq",
+    "ai",
+    "structured-data",
+    "form-validation",
+    "prompt-parser"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildwithakhila/prompt-to-form.git"
+  },
+  "homepage": "https://github.com/buildwithakhila/prompt-to-form#readme",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
