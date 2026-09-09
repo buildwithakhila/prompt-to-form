@@ -17,7 +17,7 @@ const schema = {
     safeParse(data: unknown) {
         return {
             success: true as const,
-            data: data as Partial<Appointment>,
+            data: data as Appointment,
         }
     },
 }
