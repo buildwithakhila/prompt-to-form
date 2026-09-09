@@ -162,8 +162,6 @@ The provider is behind the `PromptProvider<TData>` interface, so the core parser
 
 The repository also contains a React frontend and Express backend that demonstrate one way to use the package with Groq while keeping the API key server-side.
 
-## Tech stack
-
 ## Package
 
 The reusable library is built with:
